@@ -27,11 +27,11 @@ public final class DrunkenBishop {
         }
     }
 
-    public static class Builder{
+    public static class Builder {
 
         private String bitString;
 
-        public Builder hexString(String hexString){
+        public Builder hexString(String hexString) {
             hexString = hexString.replaceAll(":", "");
             String bitString = new BigInteger(hexString, 16).toString(2);
             bitString(bitString);
@@ -43,8 +43,8 @@ public final class DrunkenBishop {
             return this;
         }
 
-        public DrunkenBishop build(){
-            return new DrunkenBishop(bitString);
+        public DrunkenBishop build() {
+            return new DrunkenBishop(this);
         }
     }
 
@@ -58,13 +58,13 @@ public final class DrunkenBishop {
     private int xPos;
     private int yPos;
 
-    public DrunkenBishop(String allBits) {
+    private DrunkenBishop(Builder builder) {
         ArrayList<Move> temp = new ArrayList<Move>();
         int offset = 0;
 
         Queue<Move> moves = new ArrayDeque<Move>();
-        while (offset < allBits.length()) {
-            String moveBits = allBits.substring(offset, offset + 2);
+        while (offset < builder.bitString.length()) {
+            String moveBits = builder.bitString.substring(offset, offset + 2);
             Move move = moveFromMoveBits(moveBits);
             temp.add(0, move);
             offset += 2;
