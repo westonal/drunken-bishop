@@ -109,17 +109,14 @@ public final class DrunkenBishop {
     }
 
     private static Move moveFromMoveBits(String moveBits) {
-        switch (moveBits) {
-            case "00":
-                return Move.UP_LEFT;
-            case "01":
-                return Move.UP_RIGHT;
-            case "10":
-                return Move.DOWN_LEFT;
-            case "11":
-                return Move.DOWN_RIGHT;
-            default:
-                throw new RuntimeException();
-        }
+        if (moveBits.equals("00"))
+            return Move.UP_LEFT;
+        if (moveBits.equals("01"))
+            return Move.UP_RIGHT;
+        if (moveBits.equals("10"))
+            return Move.DOWN_LEFT;
+        if (moveBits.equals("11"))
+            return Move.DOWN_RIGHT;
+        throw new RuntimeException();
     }
 }
