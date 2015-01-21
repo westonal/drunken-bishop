@@ -42,14 +42,12 @@ public final class DrunkenBishop {
     public DrunkenBishop(String hexString) {
         hexString = hexString.replaceAll(":", "");
         String allBits = new BigInteger(hexString, 16).toString(2);
-        System.out.println(allBits);
         ArrayList<Move> temp = new ArrayList<Move>();
         int offset = 0;
         while (offset < allBits.length()) {
             String moveBits = allBits.substring(offset, offset + 2);
             Move move = moveFromMoveBits(moveBits);
             temp.add(0, move);
-            System.out.println(String.format("%s => %s", moveBits, move));
             offset += 2;
             if (temp.size() == 4) {
                 moves.addAll(temp);
@@ -59,8 +57,6 @@ public final class DrunkenBishop {
 
         moves.addAll(temp);
         temp.clear();
-
-        System.out.println(String.format("%d moves", moves.size()));
 
         xPos = startXPos;
         yPos = startYPos;
